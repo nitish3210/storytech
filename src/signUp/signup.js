@@ -19,8 +19,10 @@ export default function Signup() {
         return alert("lastname should  be at least 3 characters long "); 
       if(!email)
        return  alert("email cannot be empty"); 
-      else if(!/\s+@\S+\.\S+/.test(email))
-       return  alert("email is invalid");  
+      if(email.indexOf('@')<=0 ||  email.charAt(email.length-4)!=='.')
+       return alert("Invalid email id") 
+    //   else if(!/\s+@\S+\.\S+/.test(email))
+    //    return  alert("email is invalid");  
       if(!password || password.length<6 || password.length>6)  
        return  alert("password should be 6 character long");
       if(!confirmPassword || confirmPassword.length<6 || confirmPassword.length>6) 

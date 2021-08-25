@@ -1,52 +1,41 @@
 import React, {useEffect,useState} from 'react'
 import bootstrap from 'bootstrap'
+import { employee } from './data';
+import "./card.css"
 
 export default function DashBoard() {
      
-    const [employee,setEmployee] = useState([]);
+    // const [data, setData] = useState(employee);
+    
+    // useEffect(()=>{
+    //     setData(employee);
+    //     console.log(data);  
+    //  },[]);
 
-    // const getdata=async () => {
-    //     const res= await fetch('https://dummy.restapiexample.com/api/v1/employees')
-    //     // console.log(await res.json());
-    //     setEmployee(await res.json());
-    //     console.log(employee);
-        
-    // }
-     
-    useEffect(()=>{
-        // getdata(); 
-        fetch('https://dummy.restapiexample.com/api/v1/employees')
-        .then(res =>res.json())
-        .then (res => {
-            console.log(res);
-            setEmployee(res)
-        })
-        console.log(employee);
-      
-     },[]);
-
-    const displaydata= () =>{
-        employee["data"].map((data ,i)=> {
-            <div class="card"
-            style={{
-                width :"18rem" ,
-                background: 'yellow'
-            }}>
-              <ul class="list-group list-group-flush">
-                 <li class="list-group-item">{data[i].employee_name}</li>
-                 <li class="list-group-item">{data[i].employee_age}</li>
-                 <li class="list-group-item">{data[i].employee_salary}</li>
-             </ul>
-           </div>  
-        })
-    }
+    
 
     return (
         <div>
-           <div className ="employeecard"> 
-            { employee.lenght ? displaydata() : <div>  sorry no out put  </div> }
-            
-          </div>
-        </div>
+            <div className ="header">
+             <h1>DASHBOARD</h1> 
+           </div>
+         <div className ="employeecard">
+             
+           {employee.map((item ,i)=> {
+           console.log(item.employee_name);   
+            return ( 
+              <div className="cards " key={i}> 
+                  <div class="item" >Title :{item.employee_name}</div>
+                  <div class="item">Age    :{item.employee_age}</div>
+                  <div class="item">Salary :{item.employee_salary}</div>
+             </div>
+             );  
+        }) }
+
+          </div>   
+         
+         </div>
+        
     )
 }
+
